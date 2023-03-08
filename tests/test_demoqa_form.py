@@ -39,6 +39,7 @@ def test_fill_form(browser_setup):
     browser.element('tr:nth-child(5) td:nth-child(2)').should(have.text('09 February,1996'))
     browser.element('tr:nth-child(6) td:nth-child(2)').should(have.text('Computer Science'))
     browser.element('tr:nth-child(7) td:nth-child(2)').should(have.text('Sports'))
+    browser.element('tr:nth-child(8) td:nth-child(2)').should(have.text('testt.jpg'))
     browser.element('tr:nth-child(9) td:nth-child(2)').should(have.text('Ekaterinburg'))
     browser.element('tr:nth-child(10) td:nth-child(2)').should(have.text('NCR Delhi'))
 
