@@ -87,4 +87,4 @@ def find_registration_button_on_login_page(page_url, button_text):
 def formatting_func(func, *args):
     func_name_arg_values = f'{func.__name__.replace("_", " ").title()} [{", ".join(args)}]'
     print(func_name_arg_values)
-    return  func_name_arg_values
+    return func_name_arg_values
