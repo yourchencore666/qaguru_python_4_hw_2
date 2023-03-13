@@ -25,6 +25,7 @@ def test_dark_theme():
         is_dark_theme = False
     assert is_dark_theme is True
 
+
 def test_find_suitable_user():
     """
     Найдите нужного пользователя по условиям в списке пользователей
@@ -69,28 +70,21 @@ def test_find_suitable_user():
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
-    #find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
+    find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 def open_browser(browser_name):
-    actual_result = None
-    func_name = open_browser.__name__
-    func_name_list = func_name.split("_")
-    func_name_formatted = ' '.join(func_name_list).title()
-    actual_result = f"{func_name_formatted} [{browser_name}]"
+    actual_result = formatting_func(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 def go_to_companyname_homepage(page_url):
-    actual_result = None
-    func_name = go_to_companyname_homepage.__name__
-    func_name_list = func_name.split("_")
-    func_name_formatted = ' '.join(func_name_list).title()
-    actual_result = f"{func_name_formatted} [{page_url}]"
+    actual_result = formatting_func(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
-    func_name = find_registration_button_on_login_page.__name__
-    func_name_list = func_name.split("_")
-    func_name_formatted = ' '.join(func_name_list).title()
-    actual_result = f"{func_name_formatted} [{page_url}, {button_text}]"
+    actual_result = formatting_func(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+
+def formatting_func(func, *args):
+    func_name_arg_values = f'{func.__name__.replace("_", " ").title()} [{", ".join(args)}]'
+    print(func_name_arg_values)
+    return  func_name_arg_values
