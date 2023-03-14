@@ -5,7 +5,6 @@ def test_dark_theme():
     Протестируйте правильность переключения темной темы на сайте
     """
     current_time = time(hour=23)
-    is_dark_theme = None
 
     if current_time.hour >= 22 or current_time.hour <= 6:
         is_dark_theme = True
@@ -14,10 +13,9 @@ def test_dark_theme():
 
     assert is_dark_theme is True
 
+
     current_time = time(hour=16)
     dark_theme_enabled = True
-
-    is_dark_theme = None
 
     if current_time.hour >= 22 or current_time.hour <= 6 or dark_theme_enabled:
         is_dark_theme = True
@@ -38,7 +36,6 @@ def test_find_suitable_user():
         {"name": "Maria", "age": 18},
     ]
 
-    suiable_user = None
     for user in users:
         if user["name"] == "Olga":
             suiable_user = user
@@ -46,7 +43,7 @@ def test_find_suitable_user():
 
     assert suiable_user == {"name": "Olga", "age": 45}
 
-    suiable_users = None
+
     suiable_users = []
     for user in users:
         if user["age"] < 20:
