@@ -3,6 +3,8 @@ import zipfile
 import pytest
 from selene.support.shared import browser
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+resources = os.path.join(current_dir, "tests/resources")
 @pytest.fixture
 def browser_setup():
     browser.config.window_width = 1920
@@ -13,8 +15,7 @@ def browser_setup():
 
 @pytest.fixture
 def create_zip():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    resources = os.path.join(current_dir, "tests/resources")
+
     file_list = []
     for filename in os.listdir(resources):
         file_list.append(filename)
@@ -26,6 +27,6 @@ def create_zip():
 @pytest.fixture
 def delete_zip():
     yield
-    path = "/Users/urcenkoartem/Documents/qaguru_python_4_hw_2/tests/resources/archive.zip"
+    path = f"{resources}/archive.zip"
     os.remove(path)
     print("zipfile is deleted")
