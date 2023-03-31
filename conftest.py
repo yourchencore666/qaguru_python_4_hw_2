@@ -2,6 +2,8 @@ import os
 import zipfile
 import pytest
 from selene.support.shared import browser
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 resources = os.path.join(current_dir, "tests/resources")
@@ -11,6 +13,28 @@ def browser_setup():
     browser.config.window_height = 1080
     browser.config.hold_browser_open = False
     browser.config.base_url = 'https://demoqa.com'
+
+
+@pytest.fixture
+def setup_chrome():
+    options = Options()
+    options.add_argument("--window-size=1920,1080")
+
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "100.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": True
+        }
+    }
+
+    options.capabilities.update(selenoid_capabilities)
+    driver = webdriver.Remote(
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        options=options)
+
+    browser.config.driver = driver
 
 
 @pytest.fixture
