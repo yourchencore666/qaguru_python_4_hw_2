@@ -6,6 +6,8 @@ from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from demoqa_tests import helpers
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 resources = os.path.join(current_dir, "tests/resources")
 
@@ -52,6 +54,14 @@ def setup_chrome(request):
         options=options)
 
     browser.config.driver = driver
+
+
+    yield
+    helpers.add_logs(browser)
+    helpers.add_screenshot(browser)
+    helpers.add_html(browser)
+    helpers.add_video(browser)
+    browser.quit()
 
 
 @pytest.fixture
