@@ -64,5 +64,6 @@ def test_search_github_issue():
     helpers.add_logs(browser)
     helpers.add_screenshot(browser)
     helpers.add_html(browser)
+    helpers.add_video(browser)
 
     browser.quit()
