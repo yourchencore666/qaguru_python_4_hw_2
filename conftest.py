@@ -7,6 +7,13 @@ from selenium.webdriver.chrome.options import Options
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 resources = os.path.join(current_dir, "tests/resources")
+
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser',
+        default='chrome'
+    )
+
 @pytest.fixture
 def browser_setup():
     browser.config.window_width = 1920
@@ -16,12 +23,13 @@ def browser_setup():
 
 
 @pytest.fixture
-def setup_chrome():
+def setup_chrome(request):
+    browser_name = request.config.getoption('--browser')
     options = Options()
     options.add_argument("--window-size=1920,1080")
 
     selenoid_capabilities = {
-        "browserName": "chrome",
+        "browserName": browser_name,
         "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
