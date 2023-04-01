@@ -1,9 +1,19 @@
+import allure
+from allure_commons.types import Severity
 from demoqa_tests.pages.registration_page import RegistrationPage
 
 
-def test_fill_form(browser_setup):
+SITE_URL = 'https://demoqa.com/automation-practice-form'
+
+
+@allure.tag('web')
+@allure.severity(Severity.NORMAL)
+@allure.label('owner', 'yurchenko_a')
+@allure.feature(f'Проверка регистрации пользователя')
+@allure.link(SITE_URL, name='Testing')
+def test_fill_form(setup_chrome):
     registration_page = RegistrationPage()
-    registration_page.open()
+    registration_page.open(SITE_URL)
 
     # WHEN
     registration_page.type_user_initials('Artem', 'Yurchenko')
