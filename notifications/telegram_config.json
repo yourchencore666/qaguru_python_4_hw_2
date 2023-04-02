@@ -1,0 +1,17 @@
+{
+  "base": {
+    "logo": "",
+    "project": "qaguru_python_4_hw_2",
+    "environment": "",
+    "comment": "test",
+    "reportLink": "",
+    "language": "ru",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "6048671476:AAGEeAOUQ3hJIdot7hLk1silLu-Q9vQbgXI",
+    "chat": "602844565",
+    "replyTo": ""
+  }
+}
