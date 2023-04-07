@@ -10,19 +10,21 @@ from selene.support.shared import browser
 def desktop_browser():
     browser.config.window_width = 1920
     browser.config.window_height = 1080
-    browser.config.hold_browser_open = False
-
+    yield
+    browser.quit()
 
 @pytest.fixture
 def mobile_browser():
     browser.config.window_width = 540
     browser.config.window_height = 720
-    browser.config.hold_browser_open = False
+    yield
+    browser.quit()
 
 
 def test_github_desktop(desktop_browser):
     browser.open("https://github.com/")
     browser.element('.HeaderMenu-link--sign-in').should(be.visible).click()
+
 
 def test_github_mobile(mobile_browser):
     browser.open("https://github.com/")
